@@ -13,10 +13,18 @@ namespace StringCalculatorKata
             _calculator = new StringCalculator();
         }
 
-        [Fact]
-        public void Test1()
+        [Theory]
+        [InlineData("")]
+        [InlineData(null)]
+        public void Add_WhenReceiveEmptyString_ThenReturnsZero(string input)
         {
-            Check.That(1).IsEqualTo(1);
+            // Act
+            var result = Act(input);
+
+            // Assert
+            Check.That(result).IsZero();
         }
+
+        private int Act(string input) => _calculator.Add(input);
     }
 }
