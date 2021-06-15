@@ -5,6 +5,8 @@ namespace StringCalculatorKata
 {
     public class StringCalculator
     {
+        public const int MaxNumber = 1_000;
+
         public int Add(string numbers)
         {
             if (string.IsNullOrWhiteSpace(numbers))
@@ -38,7 +40,9 @@ namespace StringCalculatorKata
                 throw new Exception($"Negatives not allowed: {string.Join(',', negativeNumbers)}");
             }
 
-            return convertedNumbers.Sum();
+            return convertedNumbers
+                .Where(n => n <= MaxNumber)
+                .Sum();
         }
 
         private bool HasDelimiterSpecified(string numbers) => numbers.StartsWith("//");

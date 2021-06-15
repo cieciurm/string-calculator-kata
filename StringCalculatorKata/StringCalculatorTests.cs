@@ -85,6 +85,19 @@ namespace StringCalculatorKata
                 .Throws<Exception>().WithMessage(expectedMessage);
         }
 
+        [Theory]
+        [InlineData("1002,2", 2)]
+        [InlineData("1001,2", 2)]
+        [InlineData("1000,2", 1002)]
+        public void Add_WhenCallingWithNumbersOver1000_ThenSkipsItWhenSumming(string input, int expected)
+        {
+            // Act
+            var result = Act(input);
+
+            // Assert
+            Check.That(result).IsEqualTo(expected);
+        }
+
         private int Act(string input) => _calculator.Add(input);
     }
 }
