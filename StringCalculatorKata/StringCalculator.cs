@@ -12,9 +12,18 @@ namespace StringCalculatorKata
                 return 0;
             }
 
-            var separators = new[] { ',', '\n' };
+            string[] splitted;
+            if (HasDelimiterSpecified(numbers))
+            {
+                var splittedByEndLine = numbers.Split('\n');
+                var delimiter = splittedByEndLine[0].Substring(2);
 
-            var splitted = numbers.Split(separators);
+                splitted = splittedByEndLine[1].Split(delimiter);
+            }
+            else
+            {
+                splitted = SplitNumbers(numbers);
+            }
 
             if (!splitted.Any())
             {
@@ -24,6 +33,18 @@ namespace StringCalculatorKata
             return splitted
                 .Select(x => Convert.ToInt32(x))
                 .Sum();
+        }
+
+        private bool HasDelimiterSpecified(string numbers) => numbers.StartsWith("//");
+
+        private string[] SplitNumbers(string numbers)
+        {
+            var separators = new[] { ',', '\n' };
+
+            var splitted = numbers.Split(separators);
+
+            return splitted;
+
         }
     }
 }

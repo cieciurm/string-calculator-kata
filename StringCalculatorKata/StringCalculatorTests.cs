@@ -62,6 +62,18 @@ namespace StringCalculatorKata
             Check.That(result).IsEqualTo(expected);
         }
 
+        [Theory]
+        [InlineData("//;\n1;2", 3)]
+        [InlineData("//.\n1.2.3", 6)]
+        public void Add_WhenNumbersIncludeDelimiter_ThenSumsCorrectly(string input, int expected)
+        {
+             // Act
+            var result = Act(input);
+
+            // Assert
+            Check.That(result).IsEqualTo(expected);
+        }
+
         private int Act(string input) => _calculator.Add(input);
     }
 }
