@@ -4,8 +4,15 @@ using NFluent;
 
 namespace StringCalculatorKata
 {
-    public class UnitTest1
+    public class StringCalculatorTests
     {
+        private StringCalculator _calculator;
+
+        public StringCalculatorTests()
+        {
+            _calculator = new StringCalculator();
+        }
+
         [Fact]
         public void Test1()
         {
