@@ -74,6 +74,17 @@ namespace StringCalculatorKata
             Check.That(result).IsEqualTo(expected);
         }
 
+        [Theory]
+        [InlineData("-1,2", "Negatives not allowed: -1")]
+        [InlineData("2,-4,3,-5", "Negatives not allowed: -4,-5")]
+        public void Add_WhenCallingWithNegativeNumber_ThenThrowsExceptionWithPropertMessage(string input, string expectedMessage)
+        {
+             // Act & Assert
+            Check
+                .ThatCode(() => Act(input))
+                .Throws<Exception>().WithMessage(expectedMessage);
+        }
+
         private int Act(string input) => _calculator.Add(input);
     }
 }

@@ -30,9 +30,15 @@ namespace StringCalculatorKata
                 return 0;
             }
 
-            return splitted
-                .Select(x => Convert.ToInt32(x))
-                .Sum();
+            var convertedNumbers = splitted.Select(x => Convert.ToInt32(x));
+
+            var negativeNumbers = convertedNumbers.Where(n => n < 0);
+            if (negativeNumbers.Any())
+            {
+                throw new Exception($"Negatives not allowed: {string.Join(',', negativeNumbers)}");
+            }
+
+            return convertedNumbers.Sum();
         }
 
         private bool HasDelimiterSpecified(string numbers) => numbers.StartsWith("//");
