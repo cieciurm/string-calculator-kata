@@ -12,7 +12,9 @@ namespace StringCalculatorKata
                 return 0;
             }
 
-            var splitted = numbers.Split(',');
+            var separators = new[] { ',', '\n' };
+
+            var splitted = numbers.Split(separators);
 
             if (!splitted.Any())
             {

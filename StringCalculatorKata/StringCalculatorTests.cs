@@ -50,6 +50,18 @@ namespace StringCalculatorKata
             Check.That(result).IsEqualTo(expected);
         }
 
+        [Theory]
+        [InlineData("1\n2,3", 6)]
+        [InlineData("4,5\n6", 15)]
+        public void Add_WhenNumbersIncludeNewline_ThenSumsCorrectly(string input, int expected)
+        {
+             // Act
+            var result = Act(input);
+
+            // Assert
+            Check.That(result).IsEqualTo(expected);
+        }
+
         private int Act(string input) => _calculator.Add(input);
     }
 }
