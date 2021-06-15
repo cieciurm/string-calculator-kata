@@ -1,5 +1,6 @@
 using System;
 using Xunit;
+using NFluent;
 
 namespace StringCalculatorKata
 {
@@ -8,7 +9,7 @@ namespace StringCalculatorKata
         [Fact]
         public void Test1()
         {
-
+            Check.That(1).IsEqualTo(1);
         }
     }
 }
