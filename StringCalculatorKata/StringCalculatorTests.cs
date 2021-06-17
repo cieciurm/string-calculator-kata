@@ -6,7 +6,7 @@ namespace StringCalculatorKata
 {
     public class StringCalculatorTests
     {
-        private StringCalculator _calculator;
+        private readonly StringCalculator _calculator;
 
         public StringCalculatorTests()
         {
@@ -77,7 +77,7 @@ namespace StringCalculatorKata
         [Theory]
         [InlineData("-1,2", "Negatives not allowed: -1")]
         [InlineData("2,-4,3,-5", "Negatives not allowed: -4,-5")]
-        public void Add_WhenCallingWithNegativeNumber_ThenThrowsExceptionWithPropertMessage(string input, string expectedMessage)
+        public void Add_WhenCallingWithNegativeNumber_ThenThrowsExceptionWithProperMessage(string input, string expectedMessage)
         {
              // Act & Assert
             Check
