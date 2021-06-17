@@ -19,6 +19,7 @@ namespace StringCalculatorKata
             {
                 var splitByEndLine = numbers.Split('\n');
                 var delimiter = splitByEndLine[0].Substring(2);
+                delimiter = HandleLongerDelimiter(delimiter);
 
                 split = splitByEndLine[1].Split(delimiter);
             }
@@ -54,6 +55,16 @@ namespace StringCalculatorKata
             var split = numbers.Split(separators);
 
             return split;
+        }
+
+        private static string HandleLongerDelimiter(string delimiter)
+        {
+            if (delimiter.StartsWith("["))
+            {
+                delimiter = delimiter.Substring(1, delimiter.Length - 2);
+            }
+
+            return delimiter;
         }
     }
 }
