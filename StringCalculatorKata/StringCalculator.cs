@@ -14,27 +14,27 @@ namespace StringCalculatorKata
                 return 0;
             }
 
-            string[] splitted;
+            string[] split;
             if (HasDelimiterSpecified(numbers))
             {
-                var splittedByEndLine = numbers.Split('\n');
-                var delimiter = splittedByEndLine[0].Substring(2);
+                var splitByEndLine = numbers.Split('\n');
+                var delimiter = splitByEndLine[0].Substring(2);
 
-                splitted = splittedByEndLine[1].Split(delimiter);
+                split = splitByEndLine[1].Split(delimiter);
             }
             else
             {
-                splitted = SplitNumbers(numbers);
+                split = SplitNumbers(numbers);
             }
 
-            if (!splitted.Any())
+            if (!split.Any())
             {
                 return 0;
             }
 
-            var convertedNumbers = splitted.Select(x => Convert.ToInt32(x));
+            var convertedNumbers = split.Select(x => Convert.ToInt32(x)).ToList();
 
-            var negativeNumbers = convertedNumbers.Where(n => n < 0);
+            var negativeNumbers = convertedNumbers.Where(n => n < 0).ToList();
             if (negativeNumbers.Any())
             {
                 throw new Exception($"Negatives not allowed: {string.Join(',', negativeNumbers)}");
@@ -45,16 +45,15 @@ namespace StringCalculatorKata
                 .Sum();
         }
 
-        private bool HasDelimiterSpecified(string numbers) => numbers.StartsWith("//");
+        private static bool HasDelimiterSpecified(string numbers) => numbers.StartsWith("//");
 
         private string[] SplitNumbers(string numbers)
         {
             var separators = new[] { ',', '\n' };
 
-            var splitted = numbers.Split(separators);
+            var split = numbers.Split(separators);
 
-            return splitted;
-
+            return split;
         }
     }
 }
